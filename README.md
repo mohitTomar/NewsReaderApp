@@ -1,0 +1,2 @@
+# NewsReaderApp
+Coding Test repo
