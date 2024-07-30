@@ -27,7 +27,6 @@ class NewsAPI {
     func fetchNews(category: String = "general", completion: @escaping ([Article]) -> Void) {
         // Construct the URL for fetching news articles
         let url = URL(string: "\(baseUrl)/top-headlines?country=in&category=\(category)&apiKey=\(apiKey)")!
-        print("fetchNews_URL ",url) // Print the URL for debugging purposes
 
         // Create a data task to fetch the news articles
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -35,7 +34,6 @@ class NewsAPI {
                 let decoder = JSONDecoder() // Create a JSON decoder
                 // Try to decode the response into a NewsResponse object
                 if let newsResponse = try? decoder.decode(NewsResponse.self, from: data) {
-                    print("fetchNews_newsResponse ",newsResponse) // Print the news response for debugging purposes
                     // Dispatch the completion handler on the main thread
                     DispatchQueue.main.async {
                         completion(newsResponse.articles) // Pass the articles to the completion handler
